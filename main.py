@@ -10,6 +10,7 @@ from utils.checks import ensure_allowed_guild_id
 def create_bot() -> discord.Bot:
     intents = discord.Intents.all()
     bot = discord.Bot(intents=intents)
+    return bot
 
     async def _load_cogs():
         bot.load_extension("cogs.commands")
