@@ -7,7 +7,7 @@ def create_bot() -> discord.Bot:
     intents = discord.Intents.all()
     bot = discord.Bot(intents=intents)
     
-    bot.load_extension("cogs.commands")
+    bot.load_extension("Cogs.commands")
 
     @bot.event
     async def on_ready():
