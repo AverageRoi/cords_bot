@@ -3,10 +3,6 @@ from __future__ import annotations
 import os
 import discord
 
-
-from utils.keepalive import start_keepalive
-from utils.checks import ensure_allowed_guild_id
-
 def create_bot() -> discord.Bot:
     intents = discord.Intents.all()
     bot = discord.Bot(intents=intents)
@@ -23,6 +19,15 @@ def create_bot() -> discord.Bot:
                 print(f"Bot is only allowed in {allowed}. Shutting down.")
                 await bot.close()
                 return
+
+        # Start keepalive server
+        try:
+            # start once
+            if not getattr(bot, "_keepalive_started", False):
+                bot._keepalive_started = True
+                bot.loop.create_task(start_keepalive())
+        except Exception:
+            pass
 
 if __name__ == "__main__":
     token = DISCORD_TOKEN
