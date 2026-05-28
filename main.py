@@ -24,15 +24,6 @@ def create_bot() -> discord.Bot:
                 await bot.close()
                 return
 
-        # Start keepalive server
-        try:
-            # start once
-            if not getattr(bot, "_keepalive_started", False):
-                bot._keepalive_started = True
-                bot.loop.create_task(start_keepalive())
-        except Exception:
-            pass
-
 if __name__ == "__main__":
     token = DISCORD_TOKEN
     if not token:
