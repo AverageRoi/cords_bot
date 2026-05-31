@@ -52,7 +52,7 @@ for (const folder of commandsFolders) {
 }
 
 // Listener para cada vez que alguien utilice un comando (Discord crea un event que nosotros escuchamos y respondemos)
-client.on(Events, InteractionCreate, async interaction => {
+client.on(Events.InteractionCreate, async interaction => {
     // Si hay otro tipo de interacción, digamos un componente de un mensaje, no se registra en la consola.
     // Se puede quitar en el futuro si necesitamos respuestas como comandos sin que sean slash commands.
     if (!interaction.isChatInputCommand()) return;
