@@ -3,7 +3,12 @@
 
 const { REST, Routes } = require('discord.js');
 const { clientId, guildId } = require('./config.json');
-const BOT_TOKEN = require("./index.js")
+const BOT_TOKEN = process.env.BOT_TOKEN;
+
+if (!BOT_TOKEN) {
+	throw new Error ("Missing the Bot token");
+}
+
 const fs = require('node:fs');
 const path = require('node:path');
 
