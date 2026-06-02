@@ -14,23 +14,23 @@ module.exports = {
         // Creo que Str es lo mejor aunque sea un int, ya que es fácil liarnos y podemos dividirlo y hacer typecasting después
     .addStringOption((option) => 
         option
-            .setName("Dimensión")
+            .setName("dimension")
             .setDescription("La dimensión de las coordenadas")
             .setRequired(true)
             .setChoices(
                 { name: "Overworld", value: "overworld_dimension" },
                 { name: "Nether", value: "nether_dimension" },
                 { name: "End", value: "end_dimension" }
-            ),
+            )
         ),
 
     async execute(interaction) {
         const coordinates = interaction.options.getString("coordenadas");
-        const dimension = interaction.options.getString("Dimensión");
+        const dimension = interaction.options.getString("dimension");
 
         // Aquí iría la conexión con el prisma.js y todas esas cosiñas
         
         
-        await interaction.reply("Pong!");
+        await interaction.reply( {content: "Your coordinates have been recorded!", flags: MessageFlags.Ephemeral });
     },
 };
