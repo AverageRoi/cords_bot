@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node index.js",
     "deploy": "node deploy-commands.js",
-    "postinstall": "npx prisma generate",
+    "postinstall": "",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
