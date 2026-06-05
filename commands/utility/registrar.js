@@ -86,7 +86,7 @@ module.exports = {
             await prisma.cords.create({ //he cambiado upsert a create porque no es necesario actualizar
                 data: {
                     guildId: interaction.guildId,
-                    interaction_userinteraction.user.id,
+                    interaction_user: interaction.user.id,
                     alias: interaction.options.getString("alias"),
                     x_coordinates,
                     y_coordinates,
