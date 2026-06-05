@@ -15,6 +15,8 @@ datasource db {
 model cords {
     id Int @id @default(autoincrement())
     guildId String
+    interaction_user String
+    alias String
     x_coordinates String 
     y_coordinates String?
     z_coordinates String 
