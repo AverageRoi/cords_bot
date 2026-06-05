@@ -80,14 +80,14 @@ module.exports = {
         }
 
         console.log(interaction.options.data);
-        
+
         // Aquí iría la conexión con el prisma.js y todas esas cosiñas ~ Se aprecia el galego ahí :3
         try{
             await prisma.cords.create({ //he cambiado upsert a create porque no es necesario actualizar
                 data: {
                     guildId: interaction.guildId,
-                    interaction_user,
-                    alias,
+                    interaction_userinteraction.user.id,
+                    alias: interaction.options.getString("alias"),
                     x_coordinates,
                     y_coordinates,
                     z_coordinates,
