@@ -2,6 +2,8 @@
 const { SlashCommandBuilder } = require("discord.js");
 let prisma;
 
+console.log("EXECUTE registrar:", Date.now());
+
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("registrar")
