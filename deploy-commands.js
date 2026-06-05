@@ -1,3 +1,4 @@
+//deploy-commands.js
 // Este es el código base para que los comandos se actualicen. Ahora está diseñado para un únido server, podemos cambiarlo
 // después. No sé si el BOT_TOKEN como env funciona al ser fetched del index.js, si no hacemos otro process.env.BOT_TOKEN
 

@@ -1,3 +1,4 @@
+//index.js
 // Código que inicial que dice la guía para el setup (un poco cambiado)
 
 // Require the necessary discord.js classes (para el cliente, comandos y todo eso)
