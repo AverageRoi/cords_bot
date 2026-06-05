@@ -43,7 +43,7 @@ module.exports = {
         let z_coordinates;
 
         // True if the coordinate has weird values we don't accept
-        const Has_not_numeric_characters = /[^0-9,]/.getString(coordinates());
+        const Has_not_numeric_characters = /[^0-9,]/.getString(coordinates);
 
         // Para ver si no han introducido los datos necesarios
         if (!coordinates_untrimmed[0] || !coordinates_untrimmed[1])  {
