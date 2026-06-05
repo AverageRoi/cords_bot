@@ -27,7 +27,14 @@ module.exports = {
                     { name: "Nether", value: "nether_dimension" },
                     { name: "End", value: "end_dimension" }
                 )
-            ),
+            )
+        .addStringOption((option) =>
+            option
+                .setName("alias")
+                .setDescription("Alias to be associated to those coordinates (e.g. end portal)")
+                .setRequired(true)
+                .setMaxLength(1000)
+        ),
 
     async execute(interaction) {
             if (!prisma) {
@@ -36,6 +43,8 @@ module.exports = {
         
         const coordinates = interaction.options.getString("coordenadas");
         const dimension = interaction.options.getString("dimension");
+        const alias = interaction.options.getString("alias");
+        const interaction_user = interaction.user.id;
 
         // Declaro las variables, me acabo de enterar de que las variables declaradas dentro de ifs no persisten,
         // pero los valores asignados dentro de ifs si.
