@@ -125,7 +125,7 @@ function buildCoordinatesEmbed(allCoordinates, selectedDimensionKey) {
         embed.addFields({
             name: "No coordinates found",
             value:
-                `There are currently no coordinates registered for ` +
+                `There are currently no coordinates registered for the ` +
                 `**${dimension.label}** in this server.`,
             inline: false,
         });
