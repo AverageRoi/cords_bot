@@ -70,14 +70,17 @@ function truncateText(value, maximumLength) {
     const x = String(coordinate.x_coordinates ?? "?");
     const z = String(coordinate.z_coordinates ?? "?");
 
-    let fieldValue = `**X:** \`${x}\`\n`;
+    // We define fieldValue so inside the if we have space to hold the value in
+    let fieldValue;
 
+    // If we have y coordinates
     if (coordinate.y_coordinates !== null) {
         const y = String(coordinate.y_coordinates);
-        fieldValue += `**Y:** \`${y}\`\n`;
+        fieldValue = `\`${x}, ${y}, ${z}\``;
+    } else {
+    // If we don't have y coordinates
+        fieldValue = `\`${x}, ?, ${z}\``;
     }
-
-    fieldValue += `**Z:** \`${z}\``;
 
     // We also make it be within Discord embed limits
     return {
