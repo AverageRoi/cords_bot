@@ -218,21 +218,6 @@ module.exports = {
         await interaction.deferReply();
 
         try {
-            /*
-             * IMPORTANT:
-             *
-             * "coordinate" must match your Prisma Client model accessor.
-             *
-             * Prisma schema:
-             * model Coordinate { ... }
-             *
-             * Client:
-             * prisma.coordinate.findMany(...)
-             *
-             * If your model is called Location, this would probably be:
-             * prisma.location.findMany(...)
-             */
-
             // This is what Gpt says, I think it's called coordinates
             const coordinates = await prisma.coordinate.findMany({
                 where: {
