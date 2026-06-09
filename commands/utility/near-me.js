@@ -39,7 +39,7 @@ module.exports = {
         const coordinates = interaction.options.getString("coordenadas");
         const dimension = interaction.options.getString("dimension");
         const interaction_user = interaction.user.id;  //Lo mismo, copia-pega en algunas partes
-        const maxdist = interaction.options.getNumber("distnacia") ?? 500;
+        const maxdist = interaction.options.getNumber("distancia") ?? 500;
 
         // Declaro las variables, me acabo de enterar de que las variables declaradas dentro de ifs no persisten,
         // pero los valores asignados dentro de ifs si.
@@ -98,11 +98,12 @@ module.exports = {
             return coordinate.dimension === dimension;
         });
 
-        console.log("Filtered:" + filteredCoordinates);
+        console.log("Filtered:", filteredCoordinates);
 
         const nearCords = filteredCoordinates.filter((coordinate) => {
             const db_x = parseFloat(coordinate.x_coordinates);
             const db_z = parseFloat(coordinate.z_coordinates);
+
 
             const dist = Math.sqrt((x_coordinates - db_x) ** 2 + (z_coordinates - db_z) ** 2);
 
@@ -110,7 +111,7 @@ module.exports = {
             return dist <= maxdist;
         });
         
-        console.log('Final:' + nearCords) //Sí, falta que discord haga algo con esta info, pero tengo que comer jshdjsjh 
+        console.log('Final:', nearCords) //Sí, falta que discord haga algo con esta info, pero tengo que comer jshdjsjh 
 
         await interaction.reply({content: nearCords.toString()});
     }
