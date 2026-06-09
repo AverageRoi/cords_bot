@@ -103,7 +103,6 @@ module.exports = {
         const nearCords = filteredCoordinates.filter((coordinate) => {
             const db_x = parseFloat(coordinate.x_coordinates);
             const db_z = parseFloat(coordinate.z_coordinates);
-            let dist
 
             const dist = Math.sqrt((x_coordinates - db_x) ** 2 + (z_coordinates - db_z) ** 2);
 
