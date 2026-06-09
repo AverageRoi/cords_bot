@@ -118,7 +118,7 @@ module.exports = {
         
         console.log('Final:' + nearCords) //Sí, falta que discord haga algo con esta info, pero tengo que comer jshdjsjh 
 
-        await interaction.reply({content: nearCords});
+        await interaction.reply({content: nearCords.toString()});
     }
 }
 
