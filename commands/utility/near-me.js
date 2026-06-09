@@ -4,11 +4,11 @@ const prisma = require("../../prisma/prisma.js") //Bah ya sabes esto no lo comen
 module.exports = {
     data: new SlashCommandBuilder() //Todo el slash command está hecho rápido para que funcione, igual no está bien en plan front
         .setName("near-me")
-        .setDescription(" Busca cosas cerca de ti")
+        .setDescription("Search the nearest saved coordinates relative to your position")
         .setDMPermission(false) //hago que sólo se pueda usar en servidores
         .addStringOption((option) => 
             option
-                .setName("coordenadas")
+                .setName("coordinates")
                 .setDescription("X, Y, Z or X, Z")
                 .setRequired(true)
                 .setMaxLength(26), // Lo que he contado como las coordenadas más alejadas del World Border en caracteres
@@ -17,26 +17,26 @@ module.exports = {
         .addStringOption((option) => 
             option
                 .setName("dimension")
-                .setDescription("La dimensión de las coordenadas")
+                .setDescription("Dimension of the coordinates")
                 .setRequired(true)
                 .setChoices(
                     { name: "Overworld", value: "overworld_dimension" },
                     { name: "Nether", value: "nether_dimension" },
                     { name: "End", value: "end_dimension" },
-                    { name: "Overworld/Nether", value: "all_dimension"},
+                    { name: "Overworld/Nether", value: "all_dimension" },
                 )
             )
         .addNumberOption((option) =>
             option
                 .setName("distancia")
-                .setDescription("Buscar coordenadas a menos de ___ bloques de distancia (500 por defecto).")
+                .setDescription("Search coordinates within a ___ block range (500 by default)")
                 .setRequired(false)
                 .setMinValue(1)
                 .setMaxValue(10000)
         ),
     
     async execute(interaction){
-        const coordinates = interaction.options.getString("coordenadas");
+        const coordinates = interaction.options.getString("coordinates");
         const dimension = interaction.options.getString("dimension");
         const interaction_user = interaction.user.id;  //Lo mismo, copia-pega en algunas partes
         const maxdist = interaction.options.getNumber("distancia") ?? 500;
@@ -78,7 +78,7 @@ module.exports = {
         y_coordinates = parseFloat(y_coordinates);
         z_coordinates = parseFloat(z_coordinates);
 
-        //IMportar base de datos del servidor
+        //Importar base de datos del servidor
         const dbcords = await prisma.cords.findMany({
             where: {
                 guildId: interaction.guildId,
@@ -90,7 +90,7 @@ module.exports = {
             },
         });
 
-        //filtrar pro dimensión
+        //filtrar por dimensión
         const filteredCoordinates = dbcords.filter((coordinate) => {
             if (dimension === "all_dimension") {
                 return coordinate.dimension === "overworld_dimension" || coordinate.dimension === "nether_dimension";
