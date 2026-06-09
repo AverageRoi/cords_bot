@@ -65,7 +65,7 @@ module.exports = {
             z_coordinates = coordinates_untrimmed[2].trim()
         }
 
-        x_coordinates = parseFloat(x_coordinates);
+        x_coordinates = parseFloat(x_coordinates); //Trabajo con las coordenadas en float porque me es más fácil, luego habría que volver a pasarlas a string pero bueno
         y_coordinates = parseFloat(y_coordinates);
         z_coordinates = parseFloat(z_coordinates);
 
