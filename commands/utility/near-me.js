@@ -104,14 +104,9 @@ module.exports = {
             const db_x = parseFloat(coordinate.x_coordinates);
             const db_z = parseFloat(coordinate.z_coordinates);
             let dist
-    
-            if (coordinate.dimension = "nether_dimension"){
-                const dist = Math.sqrt(
-                    (x_coordinates - (db_x * 8)) ** 2 + (z_coordinates - (db_z * 8)) ** 2
-                );
-            } else {
-                const dist = Math.sqrt((x_coordinates - db_x) ** 2 + (z_coordinates - db_z) ** 2);
-            };
+
+            const dist = Math.sqrt((x_coordinates - db_x) ** 2 + (z_coordinates - db_z) ** 2);
+
             // Lo que hago es sacar de los valores con dimensión nether, multiplico la coordenada de la base de datos por ocho, para que esté en formato overworld. No tengo claro si tiene sentido.
             return dist <= maxdist;
         });
