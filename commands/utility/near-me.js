@@ -113,11 +113,15 @@ module.exports = {
         
         console.log('Final:', nearCords); //Sí, falta que discord haga algo con esta info, pero tengo que comer jshdjsjh 
 
-        const estavariablesellamafoca = String(nearCords.y_coordinates) ?? "?" //protección para la y cuando no está y esas cosiñas
+        const finalEmbed = nearCords
+            .map(coord => {
+                const y = coord.y_coordinates ?? "?";
 
-        const finalEmbed = `${nearCords.alias}: ${nearCords.x_coordinates}, ${estavariablesellamafoca}, ${nearCords.z_coordinates}`
-    
-        await interaction.reply({content: finalEmbed})
+                return `${coord.alias}: ${coord.x_coordinates}, ${y}, ${coord.z_coordinates}`;
+            })
+            .join("\n");
+
+            await interaction.reply({ content: finalEmbed });
     }
 }
 
