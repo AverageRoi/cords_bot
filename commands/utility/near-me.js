@@ -123,6 +123,7 @@ module.exports = {
         const nearTargetCords = filteredTargetCoordinates.filter((coordinate) => {
             const tardb_x = parseFloat(coordinate.x_coordinates);
             const tardb_z = parseFloat(coordinate.z_coordinates);
+            let targetdist
 
             if (target === "nether_dimension") {
               const targetdist = Math.sqrt((x_coordinates - (tardb_x * 8)) ** 2 + (z_coordinates - (tardb_z * 8)) ** 2);
