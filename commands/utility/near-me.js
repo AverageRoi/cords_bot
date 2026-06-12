@@ -17,15 +17,23 @@ module.exports = {
         .addStringOption((option) => 
             option
                 .setName("dimension")
-                .setDescription("Dimension of the coordinates")
+                .setDescription("Dimension of your coordinates")
                 .setRequired(true)
                 .setChoices(
                     { name: "Overworld", value: "overworld_dimension" },
                     { name: "Nether", value: "nether_dimension" },
                     { name: "End", value: "end_dimension" },
-                    { name: "Overworld/Nether", value: "all_dimension" },
                 )
             )
+        .addStringOption((option) =>
+            option
+                .setName("target")
+                .setDescription("Other dimension to check for coordinates (apart from current).")
+                .setChoices(
+                    {name: "Nether (you are in overworld)", value: "nether_dimension"},
+                    {name: "Overworld (you are in nether)", value: "overworld_dimension"}
+                )
+        )
         .addNumberOption((option) =>
             option
                 .setName("distancia")
@@ -38,6 +46,7 @@ module.exports = {
     async execute(interaction){
         const coordinates = interaction.options.getString("coordinates");
         const dimension = interaction.options.getString("dimension");
+        const target = interaction.options.getString("target")
         const interaction_user = interaction.user.id;  //Lo mismo, copia-pega en algunas partes
         const maxdist = interaction.options.getNumber("distancia") ?? 500;
 
@@ -92,10 +101,7 @@ module.exports = {
 
         //filtrar por dimensión
         const filteredCoordinates = dbcords.filter((coordinate) => {
-            if (dimension === "all_dimension") {
-                return coordinate.dimension === "overworld_dimension" || coordinate.dimension === "nether_dimension";
-            }
-            return coordinate.dimension === dimension;
+            return [coordinate.dimension === dimension, coordinate.dimension === target];
         });
 
         console.log("Filtered:", filteredCoordinates);
