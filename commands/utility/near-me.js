@@ -130,7 +130,14 @@ module.exports = {
                 (x_coordinates - x * factor) ** 2 +
                 (z_coordinates - z * factor) ** 2
             );
-
+            
+            console.log(
+                coordinate.alias,
+                "=>",
+                targetdist,
+                "(max:", maxdist, ")"
+            );
+            
             return targetdist <= maxdist;
         });
 
