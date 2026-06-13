@@ -9,7 +9,7 @@ module.exports = {
         .addStringOption((option) => 
             option
                 .setName("coordinates")
-                .setDescription("X, Y, Z or X, Z")
+                .setDescription("Your current location in X, Y, Z or X, Z")
                 .setRequired(true)
                 .setMaxLength(26), // Lo que he contado como las coordenadas más alejadas del World Border en caracteres
             ) //Ehhh sí, los comentarios por aquí son tuyos porque hay un poco de copia-pega
@@ -28,16 +28,16 @@ module.exports = {
         .addStringOption((option) =>
             option
                 .setName("target")
-                .setDescription("Other dimension to check for coordinates (apart from current).")
+                .setDescription("Choose any other dimension to check for coordinates (apart from current)")
                 .setChoices(
-                    {name: "Nether (you are in overworld)", value: "nether_dimension"},
-                    {name: "Overworld (you are in nether)", value: "overworld_dimension"}
+                    {name: "Include Nether (you are in the Overworld)", value: "nether_dimension"},
+                    {name: "Include Overworld (you are in the Nether)", value: "overworld_dimension"}
                 )
         )
         .addNumberOption((option) =>
             option
                 .setName("distancia")
-                .setDescription("Search coordinates within a ___ block range (500 by default)")
+                .setDescription("Search coordinates within a certain block range (500 by default)")
                 .setRequired(false)
                 .setMinValue(1)
                 .setMaxValue(10000)
@@ -148,18 +148,18 @@ module.exports = {
         console.log("nearTargetCords:", nearTargetCords.length);
 
         const dimensionNames = {
-            overworld_dimension: "🌍 Overworld",
-            nether_dimension: "🔥 Nether",
-            end_dimension: "🌌 End",
+            overworld_dimension: "Overworld",
+            nether_dimension: "Nether",
+            end_dimension: "End",
         };
 
         const getDimName = (dim) => dimensionNames[dim] ?? dim;
 
         const embed = new EmbedBuilder()
             .setColor(0x36eb51)
-            .setTitle("📍 Nearby Coordinates")
+            .setTitle("Nearby Coordinates")
             .setDescription(
-                `Showing coordinates within **${maxdist} blocks** of your location.`
+                `Showing coordinates within **${maxdist} blocks** of your location`
             )
             .setTimestamp();
 
